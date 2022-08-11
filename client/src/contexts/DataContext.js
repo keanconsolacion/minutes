@@ -10,10 +10,10 @@ export const DataStore = (props) => {
 	const isAM = hours < 12;
 
 	// States
-	const [title, setTitle] = useState();
-	const [date, setDate] = useState(currentDate);
+	const [title, setTitle] = useState("");
+	const [date, setDateState] = useState(currentDate);
 	const [time, setTimeState] = useState(`${isAM ? hours : hours - 12}:${minutes} ${isAM ? "AM" : "PM"}`);
-	const [purpose, setPurpose] = useState();
+	const [purpose, setPurpose] = useState("");
 	const [items, setItems] = useState([]);
 
 	// Methods
@@ -21,21 +21,25 @@ export const DataStore = (props) => {
 		setItems([
 			...items,
 			{
-				topic: "New Topic",
-				details: "Details of the topic",
+				topic: `Topic ${items.length}`,
+				details: "Details",
 			},
 		]);
 
 	const removeItem = (index) => {
 		const array = items;
 		array.splice(index, 1);
-		console.log(array);
 		setItems([...array]);
+	};
+
+	const setDate = (value) => {
+		const date = new Date(value);
+		setDateState(date);
 	};
 
 	const setTime = (value) => {
 		const hours = value.split(":")[0];
-		const minutes = value.split(":")[0];
+		const minutes = value.split(":")[1];
 		const isAM = hours < 12;
 		setTimeState(`${isAM ? hours : hours - 12}:${minutes} ${isAM ? "AM" : "PM"}`);
 	};

@@ -8,11 +8,13 @@ const App = () => {
 		<DataStore>
 			<div className="h-screen w-screen bg-[#3A4870] ">
 				<h1 className="absolute bottom-0 left-0 m-4 font-medium text-white text-md drop-shadow-lg">Minutes by Ke'an</h1>
-				<div className="flex w-full h-full">
-					<div className="relative flex justify-center w-2/3 h-full">
+
+				<div className="flex flex-col w-full h-full md:flex-row">
+					<div className="relative flex justify-center md:h-full md:w-2/3">
 						<Preview />
 					</div>
-					<div className="relative flex justify-center w-1/3 h-full">
+
+					<div className="relative flex justify-center w-full h-full md:w-1/3">
 						<Action />
 					</div>
 				</div>

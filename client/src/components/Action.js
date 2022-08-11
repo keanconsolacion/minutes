@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import DataContext from "../contexts/DataContext";
-import Item from "./Item"
+import Item from "./Item";
 
 const Action = () => {
 	const context = useContext(DataContext);
@@ -14,7 +14,10 @@ const Action = () => {
 	return (
 		<div className="absolute overflow-scroll bg-white rounded shadow-2xl inset-4">
 			<form className="flex flex-col gap-4 px-4 py-6 ">
-				<h1 className="font-semibold text-center">Details</h1>
+				<div>
+					<h1 className="font-semibold text-center">Actions</h1>
+					<p className="mt-1 text-[10px] text-left">Note: In respect to your privacy, Minutes will never save or share your data.</p>
+				</div>
 
 				{/* Title */}
 				<div className="flex flex-col gap-1">
@@ -22,8 +25,8 @@ const Action = () => {
 					<input
 						type="text"
 						className="p-1 text-sm border-2 border-solid rounded-sm"
+						value={context.title}
 						onChange={(e) => context.setTitle(e.target.value)}
-						placeholder="Sprint 1 Meeting"
 					/>
 				</div>
 
@@ -32,6 +35,7 @@ const Action = () => {
 					<label className="text-sm ">Purpose of the meeting</label>
 					<textarea
 						type="text"
+						value={context.purpose}
 						className="p-1 text-sm border-2 border-solid rounded-sm"
 						onChange={(e) => context.setPurpose(e.target.value)}
 					/>
@@ -52,7 +56,10 @@ const Action = () => {
 						<input
 							type="time"
 							className="p-1 text-sm border-2 border-solid rounded-sm"
-							onChange={(e) => context.setTime(e.target.value)}
+							onChange={(e) => {
+								console.log(e.target.value, context.time);
+								context.setTime(e.target.value);
+							}}
 						/>
 					</div>
 				</div>
@@ -67,7 +74,7 @@ const Action = () => {
 						className="bg-[#FF6F1E] px-4 py-1 rounded shadow-sm scale-animation cursor-pointer"
 						onClick={() => context.addItem()}
 					>
-						<h1 className="text-sm font-semibold text-white">Add Item</h1>
+						<h1 className="text-sm font-medium text-white">Add Item</h1>
 					</button>
 				</div>
 			</form>
